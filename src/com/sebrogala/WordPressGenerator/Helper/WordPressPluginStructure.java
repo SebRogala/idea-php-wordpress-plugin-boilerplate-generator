@@ -35,8 +35,11 @@ public class WordPressPluginStructure {
 
     public static void hideMenuItemIfNotClickedOnPluginsDirectory(AnActionEvent e) {
         VirtualFile clickedMenuItem = DataKeys.VIRTUAL_FILE.getData(e.getDataContext());
+        String clickedName = "";
+        try {
+            clickedName = clickedMenuItem.getCanonicalPath().replaceAll(".+\\/(\\w+$)", "$1");
+        } catch (NullPointerException ex) {}
 
-        String clickedName = clickedMenuItem.getCanonicalPath().replaceAll(".+\\/(\\w+$)", "$1");
         if(!"plugins".equals(clickedName)) {
             e.getPresentation().setEnabledAndVisible(false);
         }
@@ -45,8 +48,14 @@ public class WordPressPluginStructure {
     public static void hideMenuItemIfNotClickedOnSpecificPlugin(AnActionEvent e, String name) {
         VirtualFile clickedMenuItem = DataKeys.VIRTUAL_FILE.getData(e.getDataContext());
 
-        String clickedParentName = clickedMenuItem.getParent().getCanonicalPath().replaceAll(".+\\/(\\w+$)", "$1");
-        Boolean specificFolderAlreadyExists = new File(clickedMenuItem.getCanonicalPath() + "/" + name).exists();
+        String clickedParentName = "";
+        Boolean specificFolderAlreadyExists = true;
+
+        try {
+            clickedParentName = clickedMenuItem.getParent().getCanonicalPath().replaceAll(".+\\/(\\w+$)", "$1");
+            specificFolderAlreadyExists = new File(clickedMenuItem.getCanonicalPath() + "/" + name).exists();
+        } catch (NullPointerException ex) {}
+
 
         if(!"plugins".equals(clickedParentName) || specificFolderAlreadyExists) {
             e.getPresentation().setEnabledAndVisible(false);
