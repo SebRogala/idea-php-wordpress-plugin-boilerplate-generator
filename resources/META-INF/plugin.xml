@@ -1,0 +1,54 @@
+<idea-plugin>
+    <id>com.sebrogala.WordPressGenerator</id>
+    <name>WordPress Plugin Boilerplate Generator</name>
+    <version>1.1</version>
+    <vendor email="sebrogala@gmail.com" url="sebrogala.com">SebRogala</vendor>
+
+    <description><![CDATA[
+      WordPress plugin generator based on <a href="http://wppb.io/">WordPress Boilterplate</a>.<br>
+      There is addition of API section for creating WP REST endpoints.<br>
+    ]]></description>
+
+    <change-notes><![CDATA[
+    ]]>
+    </change-notes>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="173.0"/>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <group id="WPGeneratorGroupHolder" popup="false">
+            <separator/>
+            <group id="WPGenerator" class="com.intellij.ide.actions.NonTrivialActionGroup" text="WordPress" description="WordPress Generators" popup="true">
+                <action id="WPGenerator.NewPlugin"
+                        class="com.sebrogala.WordPressGenerator.Action.NewPlugin"
+                        text="New Plugin" description="Generate new plugin for WordPress">
+                </action>
+                <action id="WPGenerator.AddAdmin"
+                        class="com.sebrogala.WordPressGenerator.Action.AddAdmin"
+                        text="Add Admin" description="Add Admin section to current plugin">
+                </action>
+                <action id="WPGenerator.AddApi"
+                        class="com.sebrogala.WordPressGenerator.Action.AddApi"
+                        text="Add API" description="Add API section to current plugin">
+                </action>
+                <action id="WPGenerator.AddPublic"
+                        class="com.sebrogala.WordPressGenerator.Action.AddPublic"
+                        text="Add Public" description="Add Public section to current pugin">
+                </action>
+            </group>
+
+            <add-to-group group-id="NewGroup" anchor="after" relative-to-action="PhpNewGroup"/>
+        </group>
+    </actions>
+</idea-plugin>
