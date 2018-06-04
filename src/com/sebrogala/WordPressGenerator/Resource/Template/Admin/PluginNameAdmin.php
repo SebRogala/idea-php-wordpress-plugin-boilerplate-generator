@@ -47,7 +47,7 @@ class {{ capCamelName }}Admin
             'PageTitle',
             'MenuTitle',
             'manage_options',
-            "menu-slug",
+            $this->pluginName,
             [new {{ capCamelName }}AdminMenuRouter(), 'execute'],
             'icon',
             '58.001' //position
