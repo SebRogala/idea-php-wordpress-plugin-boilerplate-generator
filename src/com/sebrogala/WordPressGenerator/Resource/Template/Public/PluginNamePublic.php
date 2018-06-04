@@ -20,11 +20,11 @@ class {{ capCamelName }}Public
 
 	public function enqueueStyles()
     {
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/{{ capCamelName }}Public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->pluginName, plugin_dir_url( __FILE__ ) . 'css/{{ capCamelName }}Public.css', array(), $this->version, 'all' );
 	}
 
 	public function enqueueScripts()
     {
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/{{ capCamelName }}Public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->pluginName, plugin_dir_url( __FILE__ ) . 'js/{{ capCamelName }}Public.js', array( 'jquery' ), $this->version, false );
 	}
 }
